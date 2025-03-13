@@ -34,50 +34,61 @@ container {
 }
 
 h1 {
-    color: #1a1a1a;
+    color: #fff;
     font-size: 2.5em;
     margin-bottom: 1.5rem;
     font-weight: 700;
     line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 p {
     line-height: 1.6;
     font-size: 1.2em;
-    color: #4a4a4a;
+    color: #f0f0f0;
     margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .info {
     min-width: min-content;
-    background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 16px;
     padding: 2.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
                 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     max-width: 800px;
     margin: 0 auto;
-    backdrop-filter: blur(5px); /* Размытие фона */
+    backdrop-filter: blur(5px);
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .button {
-    width: calc(100% - 2rem);
-    padding: 1rem;
-    display: inline-block;
+    padding: 1rem 2rem;
     background-color: #2563eb;
     color: white;
     text-decoration: none;
     border-radius: 12px;
     transition: all 0.3s ease;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 500;
-    letter-spacing: 0.5px;
     border: none;
     cursor: pointer;
+    min-width: 200px;
+    text-align: center;
+}
+
+.button.secondary {
+    background-color: #374151;
 }
 
 .button:hover {
-    background-color: #1d4ed8;
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
                 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -87,31 +98,40 @@ p {
     transform: translateY(0);
 }
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2em;
-    }
-    
-    p {
-        font-size: 1.1em;
-    }
-    
-    .info {
-        padding: 1.5rem;
-        border-radius: 12px;
-    }
-    
-    .button {
-        font-size: 1.1em;
-        padding: 0.8rem;
-    }
+@keyframes backgroundZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
 }
 
-@keyframes backgroundZoom {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.05);
-    }
+@media (max-width: 600px) {
+    h1 { font-size: 2em; }
+    p { font-size: 1.1em; }
+    .info { padding: 1.5rem; border-radius: 12px; }
+    .button { font-size: 1em; padding: 0.8rem 1.5rem; min-width: 160px; }
+}
+
+.ar-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    color: #ffc107;
+}
+
+.ar-warning p {
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+}
+
+.ar-warning ol {
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    max-width: fit-content;
+    text-align: left;
+}
+
+.ar-warning li {
+    margin: 0.25rem 0;
+    list-style-position: outside;
 }

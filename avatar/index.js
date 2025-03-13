@@ -1,4 +1,5 @@
-AFRAME.registerComponent('marker-persistence', {
+document.addEventListener('DOMContentLoaded', () => {
+  AFRAME.registerComponent('marker-persistence', {
     schema: {
       worldPos: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
       worldRot: { type: 'vec3', default: { x: 0, y: 0, z: 0 } }
@@ -48,11 +49,12 @@ AFRAME.registerComponent('marker-persistence', {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+
   const cameraPrompt = document.getElementById('camera-permission-prompt');
   const requestCameraButton = document.getElementById('request-camera-access');
+  const chatContainer = document.getElementById('chat-container');
 
-  // Check camera access
+  chatContainer.style.display = 'none';
   checkCameraAccess();
 
   requestCameraButton.addEventListener('click', () => {
@@ -63,10 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(() => {
         cameraPrompt.style.display = 'none';
+        chatContainer.style.display = 'flex';
+        const scene = document.querySelector('a-scene');
+        if (scene) {
+          scene.emit('reload');
+        }
       })
       .catch((error) => {
         console.error('Ошибка доступа к камере:', error);
         cameraPrompt.style.display = 'block';
+        cameraPrompt.querySelector('p').textContent = 'Для того чтобы поговорить с Аркадием, пожалуйста, предоставь доступ к камере.';
       });
   }
 
@@ -74,6 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(() => {
         cameraPrompt.style.display = 'none';
+        chatContainer.style.display = 'flex';
+        const scene = document.querySelector('a-scene');
+        if (scene) {
+          scene.emit('reload');
+        }
       })
       .catch((error) => {
         console.error('Ошибка доступа к камере:', error);

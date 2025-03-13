@@ -4,7 +4,7 @@
   <meta charset="UTF-8" /> 
   <meta name="viewport" content="width=device-width" /> 
 
-  <title>Гид по Байкалу</title>
+  <title>Гид по Байкалу FlyBaikal</title>
   <link rel="stylesheet" href="../globals.css">
   <link rel="stylesheet" href="index.css"></link>
   <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script> 
@@ -17,20 +17,29 @@
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;"
       vr-mode-ui="enabled: false"
-      style="width: 1000px;"
     >
-      <div id="history-modal">
-        <div id="history-content">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <div id="history-modal" class="modal" style="display: none;">
+        <div id="history-content" class="modal-content">
+          <div class="modal-header">
             <h2>История чата</h2>
-            <button id="close-history">Х</button>
+            <button id="close-history">&times;</button>
           </div>
           <div id="history-messages"></div>
         </div>
       </div>
 
+      <div id="error-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Ошибка</h2>
+            <button class="close-modal">&times;</button>
+          </div>
+          <p id="error-message">Произошла ошибка, попробуй позже. Мы уже работаем над решением этой проблемы</p>
+        </div>
+      </div>
+
       <div id="camera-permission-prompt" class="camera-prompt">
-        <p>Пожалуйста, предоставь доступ к камере для использования AR.</p>
+        <p>Для того чтобы поговорить с Аркадием, пожалуйста, предоставь доступ к камере.</p>
         <button id="request-camera-access">Проверить</button>
       </div>
 
@@ -45,23 +54,23 @@
         smoothTolerance="0.01"
         smoothThreshold="2"
       >
-        <a-entity
-          id="model-entity"
-          gltf-model="/public/models/avatar/avatar.gltf"
-          position='0 1 0'
-          rotation="270 180 180">
-        </a-entity>
+
+      <a-entity
+        id="chaika-entity"
+        gltf-model="url(/public/models/chaika.glb)"
+        position='0 1 0'
+        rotation="270 180 180">
+      </a-entity>
+
       </a-marker>
       
       <a-entity camera></a-entity> 
-
-
+      
   </a-scene>
     
   <div class="chat">
     <div id="chat-container">
-      <button id="history-button"><img src="/public/history.png" alt="История"></button>
-      <button id="voice-button">🎤</button>
+      <button id="history-button">История <img src="/public/history.png" alt="История"></button>
       <input type="text" id="user-input" placeholder="Задай вопрос..." />
       <button id="send-button">Узнать</button>
     </div>
