@@ -1,9 +1,9 @@
 * {
     color: #fff;
+    font-family: Monospace;
 }
 
 body {
-    font-family: Monospace;
     overflow: hidden;
     margin: 0;
     padding: 0;
